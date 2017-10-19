@@ -24,6 +24,8 @@ class PointerNode{
   void set_left(Node*);
   void set_right(Node*);
   char get_op();
+  Node* get_left();
+  Node* get_right();
  private:
   char op;
   Node* left;

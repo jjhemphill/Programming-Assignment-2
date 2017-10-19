@@ -46,3 +46,9 @@ void PointerNode::set_right(Node* p2){
 char PointerNode::get_op(){
   return op;
 }
+Node* PointerNode::get_left(){
+  return left;
+}
+Node* PointerNode::get_right(){
+  return right;
+}

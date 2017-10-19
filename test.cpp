@@ -8,7 +8,7 @@ int main(){
   pnode1.set_left(p1);
   
   node1.set_right('5');
-  char x = p1->get_right();
+  char x = pnode1.get_left()->get_right();
   cout<<x<<endl;
   return 0;
 }
