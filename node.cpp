@@ -1,54 +1,59 @@
 #include <iostream>
+#include <string>
 #include "node.h"
 using namespace std;
 
-//define Node functions
-Node::Node(){
-  op='+';
-  left='x';  //always initialize to x
-  right='0';
+
+
+Node::Node(char var){
+  data.var = var;
+  node_t = VARIABLE;
 }
-void Node::set_op(char oper){
-  op=oper;
+
+Node::Node(operator_type op, Node* operand1, Node* operand2){
+  data.op = op;
+  node_t = EXPRESSION;
+  this->operand1 = operand1;
+  this->operand2 = operand2;
 }
-void Node::set_left(char var){  //DO WE NEED THIS IF ALWAYS INITIALIZING TO X???
-  left=var;
+
+Node::Node(int val){
+  data.val = val;
+  node_t = INTEGER;
 }
-void Node::set_right(char num){
-  right=num;
+
+void Node::set_left(Node* n){
+  operand1 = n;
 }
-char Node::get_op(){
-  return op;
+
+void Node::set_right(Node* n){
+  operand2 = n;
 }
-char Node::get_left(){
-  return left;
+
+void Node::set_op(operator_type op){
+  data.op = op;
 }
-char Node::get_right(){
-  return right;
+
+void Node::set_parent(Node* p){
+  parent = p;
+}
+
+char Node::print_operator() const {
+  if (data.op == PLUS)
+    return '+';
+  else if (data.op == MINUS)
+    return '-';
+  else if (data.op == MULT)
+    return '*';
+  else if (data.op == DIVIDE)
+    return '/';
+}
+
+string Node::print_infix() const {
+  string infix = "(";
+  infix.append( operand1->data.var + to_string(data.op) + (to_string(operand2->data.val)) + ")");
+  return infix;
 }
 
 
-//define PointerNode functions
-PointerNode::PointerNode(){
-  op='+';
-  left=NULL;
-  right=NULL;
-}
-void PointerNode::set_op(char oper){
-  op=oper;
-}
-void PointerNode::set_left(Node* p1){
-  left=p1;
-}
-void PointerNode::set_right(Node* p2){
-  right=p2;
-}
-char PointerNode::get_op(){
-  return op;
-}
-Node* PointerNode::get_left(){
-  return left;
-}
-Node* PointerNode::get_right(){
-  return right;
-}
+  

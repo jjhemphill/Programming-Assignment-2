@@ -1,14 +1,16 @@
 #include <iostream>
-#include "node.h"
+#include "list.cpp"
 using namespace std;
+
 int main(){
-  PointerNode pnode1 = PointerNode();
-  Node node1 = Node();
-  Node* p1= &node1;
-  pnode1.set_left(p1);
+  string s = "(((x+3)*(x+5))-(x/2))";
+  Node* t = makeTree(s);
+  t = t->get_left();
+  t = t->get_left();
+  t = t->get_left();
+  char a = t->get_char();
   
-  node1.set_right('5');
-  char x = pnode1.get_left()->get_right();
-  cout<<x<<endl;
+  cout << a << endl;
+ 
   return 0;
 }
