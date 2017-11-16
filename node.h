@@ -25,12 +25,13 @@ class Node {
 	void set_right(Node* n);
 	void set_op(operator_type op);
 	void set_parent(Node* p);
-	operator_type  get_op() {return data.op;}
 	Node* get_left() {return operand1;}
 	Node* get_right() {return operand2;}
 	Node* get_parent() {return parent;}
-	int get_int() {return data.val;}
-	char get_char() {return data.var;}
+	operator_type get_op();
+        char get_char();
+	int get_int();
+
 	
       
         string print_infix() const;

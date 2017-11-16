@@ -14,30 +14,33 @@ operator_type s_to_operator(char c) {
 
 
 Node* makeTree(string s){
-  Node* current = new Node(PLUS);
+  Node* current = new Node(PLUS,NULL,NULL);
   Node* top = current;
   int i = 1;
   char cursor = s[i];
-  while (i != s.size()-1){
+  while (i != s.size()){
     if (cursor == '('){
       Node* n = new Node(PLUS);
-      if (current->get_left() == NULL)
-	current->set_left(n);
+      if (current->get_left() == NULL){
+       	current->set_left(n);
+      }
       else
 	current->set_right(n);
       n->set_parent(current);
       current = n;
     }
-    else if (cursor == '+' || '-' || '/' || '*')
+    if ((cursor == '+')||(cursor=='-')||(cursor=='*')||(cursor=='/'))
       current->set_op(s_to_operator(cursor));
-    else if (cursor == 'x'){
+    if (cursor == 'x'){
       Node* b = new Node(cursor);
-      current->set_left(b);}
-    else if (cursor == '0'||'1'||'2'||'3'||'4'||'5'||'6'||'7'||'8'||'9'){
+      current->set_left(b);
+    }
+    if ((cursor == '1')||(cursor == '2')||(cursor == '3')||(cursor == '4')||(cursor == '5')||(cursor == '6')||(cursor == '7')||(cursor == '8')||(cursor == '9')){
       Node* a = new Node(cursor-'0');
       current->set_right(a);}
-    else if (cursor == ')')
+    if (cursor == ')'){
       current = current->get_parent();
+    }
     i++;
     cursor = s[i];
   }

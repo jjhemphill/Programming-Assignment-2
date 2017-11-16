@@ -37,6 +37,17 @@ void Node::set_op(operator_type op){
 void Node::set_parent(Node* p){
   parent = p;
 }
+int Node::get_int(){
+  return data.val;
+}
+
+char Node::get_char(){
+  return data.var;
+}
+
+operator_type Node::get_op(){
+  return data.op;
+}
 
 char Node::print_operator() const {
   if (data.op == PLUS)
